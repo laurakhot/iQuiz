@@ -19,7 +19,7 @@ struct QuizTopic {
     let imageName: String
 }
 
-let quizTopics = [QuizTopic(title: "Mathematics", description: "This quiz will test your math ability", imageName: "math_quiz"), QuizTopic(title: "Science", description: "This quiz will test your science knowledge", imageName: "science_quiz"), QuizTopic(title: "Marvel 1", description: "This quiz will test your DeadPool knowledge", imageName: "deadpool_quiz"), QuizTopic(title: "Marvel 2", description: "This quiz will test your Captain American knowledge", imageName: "cptn_amer_quiz"), QuizTopic(title: "Marvel 3", description: "This quiz will test your Hulk knowledge", imageName: "hulk_quiz")]
+let quizTopics = [QuizTopic(title: "Mathematics", description: "This quiz will test your math ability", imageName: "math_quiz"), QuizTopic(title: "Science", description: "This quiz will test your science knowledge", imageName: "science_quiz"), QuizTopic(title: "Marvel", description: "This quiz will test your DeadPool knowledge", imageName: "deadpool_quiz")]
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
