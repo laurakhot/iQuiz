@@ -12,6 +12,7 @@ class QuestionViewController: UIViewController {
     var quizTopic: QuizTopic!
     var currentQuestion: Int = 0
     var selectedAnswer: Int?
+    var totalCorrect: Int = 0
     
     
     @IBOutlet var answerButtons: [UIButton]!
@@ -30,8 +31,21 @@ class QuestionViewController: UIViewController {
         for (i, button) in answerButtons.enumerated() {
             button.setTitle(quizTopic.questions[currentQuestion].options[i], for: .normal)
         }
+        
+        let backBtn = UIBarButtonItem(
+            image: UIImage(systemName: "chevron.left"),
+            style: .plain,
+            target: self,
+            action: #selector(backBtnPressed)
+        )
+        
+        navigationItem.leftBarButtonItem = backBtn
 
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func backBtnPressed() {
+        navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func answerButtonPressed(_ sender: UIButton) {
@@ -50,7 +64,35 @@ class QuestionViewController: UIViewController {
     }
     
     @IBAction func submitButtonTapped(_ sender: UIButton) {
+        guard let selected = selectedAnswer else {
+            return
+        }
+        
+        let isCorrect = (selected == quizTopic.questions[currentQuestion].answerIndex)
+        
+        performSegue(withIdentifier: "toAnswerScene", sender: isCorrect)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toAnswerScene",
+            let destination = segue.destination as? AnswerViewController,
+            let isCorrect = sender as? Bool {
+                destination.isCorrect = isCorrect
+                if isCorrect {
+                    totalCorrect += 1
+                }
+                destination.totalCorrect = totalCorrect
+                destination.quizTopic = self.quizTopic
+                destination.currentQuestion = self.currentQuestion
+            destination.correctAnswer = quizTopic.questions[currentQuestion].answerIndex
+                destination.selectedAnswer = self.selectedAnswer
+                destination.isLastQuestion = (quizTopic.questions.count == currentQuestion + 1)
+        }
+    }
+    
+    
+    
+    
     
     
     /*

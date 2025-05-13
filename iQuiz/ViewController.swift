@@ -27,9 +27,9 @@ struct QuizTopic {
 }
 
 let quizTopics = [
-    QuizTopic(title: "Mathematics", description: "This quiz will test your math ability", imageName: "math_quiz", questions: [QuizQuestion(question: "What is 2 + 2?", options: ["1", "2", "3"], answerIndex: 1), QuizQuestion(question: "What is 5 * 3?", options:["15", "20", "25"], answerIndex: 0)]),
-    QuizTopic(title: "Science", description: "This quiz will test your science knowledge", imageName: "science_quiz", questions: [QuizQuestion(question:"What is the powerhouse of the cell?", options:["nucleus", "ribosomes", "mitochondria"], answerIndex: 2), QuizQuestion(question:"What planet is closest to the sun?", options:["Venus", "Mercury", "Mars"], answerIndex: 1)]),
-    QuizTopic(title: "Marvel", description: "This quiz will test your DeadPool knowledge", imageName: "deadpool_quiz", questions: [QuizQuestion(question:"What is Thor's hammer made of?", options:["Uru", "Titanium", "Gold"], answerIndex:0), QuizQuestion(question:"Who is Deadpool?", options:["Tony Stark", "Peter Parker", "Wade Wilson"], answerIndex: 2)])]
+    QuizTopic(title: "Mathematics", description: "This quiz will test your math ability", imageName: "math_quiz", questions: [QuizQuestion(question: "What is 2 + 2?", options: ["3", "4", "5"], answerIndex: 1), QuizQuestion(question: "What is 5 * 3?", options:["15", "20", "25"], answerIndex: 0), QuizQuestion(question: "What is 45 / 5?", options:["10", "9", "8"], answerIndex: 1)]),
+    QuizTopic(title: "Science", description: "This quiz will test your science knowledge", imageName: "science_quiz", questions: [QuizQuestion(question:"What is the powerhouse of the cell?", options:["nucleus", "ribosomes", "mitochondria"], answerIndex: 2), QuizQuestion(question:"What planet is closest to the sun?", options:["Venus", "Mercury", "Mars"], answerIndex: 1), QuizQuestion(question: "How do plants make food?", options:["photosynthesis", "hunting", "osmosis"], answerIndex: 0)]),
+    QuizTopic(title: "Marvel", description: "This quiz will test your DeadPool knowledge", imageName: "deadpool_quiz", questions: [QuizQuestion(question:"What is Thor's hammer made of?", options:["Uru", "Titanium", "Gold"], answerIndex:0), QuizQuestion(question:"Who is Deadpool?", options:["Tony Stark", "Peter Parker", "Wade Wilson"], answerIndex: 2), QuizQuestion(question: "What is Black Widow's real name?", options:["Natalie Portman", "Natasha Romanoff", "Yelena Belova"], answerIndex: 1)])]
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
@@ -53,6 +53,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        self.navigationItem.hidesBackButton = true
 //        print(tableView.dequeueReusableCell(withIdentifier: "QuizCell")!) // reurns nil
     }
     
@@ -65,7 +66,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath)  -> CGFloat{
             return 100
         }
-    
     
     // segues
     var selectedQuiz: QuizTopic!
