@@ -16,6 +16,7 @@ class AnswerViewController: UIViewController {
     var totalCorrect: Int!
     var correctAnswer: Int!
     var selectedAnswer: Int!
+    var quizImg: String!
     
     @IBOutlet weak var resultLabel: UILabel!
     
@@ -27,7 +28,7 @@ class AnswerViewController: UIViewController {
         super.viewDidLoad()
         
         for (i, button) in answerButtons.enumerated() {
-            button.setTitle(quizTopic.questions[currentQuestion].options[i], for: .normal)
+            button.setTitle(quizTopic.questions[currentQuestion].answers[i], for: .normal)
             button.setTitleColor(.white, for: .normal)
             if (button.tag == correctAnswer) {
                 button.backgroundColor = .systemGreen
@@ -42,7 +43,7 @@ class AnswerViewController: UIViewController {
             resultLabel.text = "You are incorrect!"
         }
         
-        questionLabel.text = quizTopic.questions[currentQuestion].question
+        questionLabel.text = quizTopic.questions[currentQuestion].text
         
         
         //back btn
@@ -76,6 +77,7 @@ class AnswerViewController: UIViewController {
             destination.quizTopic = self.quizTopic
             destination.currentQuestion = self.currentQuestion + 1
             destination.totalCorrect = self.totalCorrect
+            destination.quizImg = quizImg
         }
         if segue.identifier == "toFinishedScene",
            let destination = segue.destination as? FinishedViewController {

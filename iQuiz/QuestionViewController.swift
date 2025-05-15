@@ -11,8 +11,9 @@ class QuestionViewController: UIViewController {
     
     var quizTopic: QuizTopic!
     var currentQuestion: Int = 0
-    var selectedAnswer: Int?
+    var selectedAnswer: Int!
     var totalCorrect: Int = 0
+    var quizImg: String!
     
     
     @IBOutlet var answerButtons: [UIButton]!
@@ -26,10 +27,10 @@ class QuestionViewController: UIViewController {
         super.viewDidLoad()
         
         quizNameLabel.text = quizTopic.title
-        quizImageIcon.image = UIImage(named: quizTopic.imageName)
-        quizQuestionLabel.text = quizTopic.questions[currentQuestion].question
+        quizImageIcon.image = UIImage(named: quizImg)
+        quizQuestionLabel.text = quizTopic.questions[currentQuestion].text
         for (i, button) in answerButtons.enumerated() {
-            button.setTitle(quizTopic.questions[currentQuestion].options[i], for: .normal)
+            button.setTitle(quizTopic.questions[currentQuestion].answers[i], for: .normal)
         }
         
         let backBtn = UIBarButtonItem(
@@ -68,7 +69,7 @@ class QuestionViewController: UIViewController {
             return
         }
         
-        let isCorrect = (selected == quizTopic.questions[currentQuestion].answerIndex)
+        let isCorrect = (selected == Int(quizTopic.questions[currentQuestion].answer)! - 1)
         
         performSegue(withIdentifier: "toAnswerScene", sender: isCorrect)
     }
@@ -84,9 +85,10 @@ class QuestionViewController: UIViewController {
                 destination.totalCorrect = totalCorrect
                 destination.quizTopic = self.quizTopic
                 destination.currentQuestion = self.currentQuestion
-            destination.correctAnswer = quizTopic.questions[currentQuestion].answerIndex
+            destination.correctAnswer = Int(quizTopic.questions[currentQuestion].answer)! - 1
                 destination.selectedAnswer = self.selectedAnswer
                 destination.isLastQuestion = (quizTopic.questions.count == currentQuestion + 1)
+            destination.quizImg = quizImg
         }
     }
     

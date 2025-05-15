@@ -111,21 +111,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quiz Topic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MIC-zk-xfF">
-                                <rect key="frame" x="0.0" y="162" width="393" height="35"/>
+                                <rect key="frame" x="0.0" y="107" width="393" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Do you know the answer to this question?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ti1-al-6e8">
-                                <rect key="frame" x="57" y="205" width="278" height="128"/>
+                                <rect key="frame" x="57" y="120" width="278" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7th-om-FR9">
-                                <rect key="frame" x="37" y="341" width="319" height="35"/>
+                                <rect key="frame" x="37" y="242" width="319" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Answer Choice 1"/>
@@ -134,7 +134,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r6M-3c-LRM">
-                                <rect key="frame" x="37" y="400" width="319" height="35"/>
+                                <rect key="frame" x="37" y="307" width="319" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Answer Choice 2"/>
@@ -143,7 +143,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIq-dy-pTs">
-                                <rect key="frame" x="37" y="459" width="319" height="35"/>
+                                <rect key="frame" x="37" y="372" width="319" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Answer Choice 3"/>
@@ -166,6 +166,15 @@
                                     <constraint firstAttribute="width" constant="240" id="aSl-dm-1Ao"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eok-87-8Gg">
+                                <rect key="frame" x="37" y="436" width="319" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Answer Choice 4"/>
+                                <connections>
+                                    <action selector="answerButtonPressed:" destination="GPu-Sf-bPr" eventType="touchUpInside" id="gsj-Bm-Tmv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bgh-ng-yVP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -184,6 +193,7 @@
                         <outletCollection property="answerButtons" destination="7th-om-FR9" collectionClass="NSMutableArray" id="ZUg-Cx-mzq"/>
                         <outletCollection property="answerButtons" destination="r6M-3c-LRM" collectionClass="NSMutableArray" id="Low-Oa-SiZ"/>
                         <outletCollection property="answerButtons" destination="RIq-dy-pTs" collectionClass="NSMutableArray" id="z77-RB-2k7"/>
+                        <outletCollection property="answerButtons" destination="Eok-87-8Gg" collectionClass="NSMutableArray" id="dLF-uH-ZY4"/>
                         <segue destination="7Uo-tA-PIc" kind="show" identifier="toAnswerScene" id="nGw-xO-ae3"/>
                     </connections>
                 </viewController>
@@ -208,33 +218,39 @@
                                     <action selector="nextBtnPressed:" destination="7Uo-tA-PIc" eventType="touchUpInside" id="D95-ZZ-MNN"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Do you know the answer to this question?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0FW-Ln-NJh">
-                                <rect key="frame" x="57" y="209" width="278" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwt-KH-su0">
-                                <rect key="frame" x="37" y="350" width="319" height="35"/>
+                                <rect key="frame" x="37" y="252" width="319" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Answer Choice 1"/>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ztc-iv-51K">
-                                <rect key="frame" x="37" y="409" width="319" height="35"/>
+                                <rect key="frame" x="37" y="315" width="319" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Answer Choice 2"/>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lrK-fM-1Hq">
-                                <rect key="frame" x="37" y="468" width="319" height="35"/>
+                                <rect key="frame" x="37" y="377" width="319" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Answer Choice 3"/>
                             </button>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3m-JN-PF5">
+                                <rect key="frame" x="37" y="438" width="319" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Answer Choice 4"/>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Correct or Incorrect!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHx-IT-iVc">
                                 <rect key="frame" x="37" y="540" width="319" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Do you know the answer to this question?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0FW-Ln-NJh">
+                                <rect key="frame" x="57" y="118" width="278" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -251,6 +267,7 @@
                         <outletCollection property="answerButtons" destination="gwt-KH-su0" collectionClass="NSMutableArray" id="WGx-ay-V70"/>
                         <outletCollection property="answerButtons" destination="Ztc-iv-51K" collectionClass="NSMutableArray" id="OQn-Ev-Wll"/>
                         <outletCollection property="answerButtons" destination="lrK-fM-1Hq" collectionClass="NSMutableArray" id="AQ2-mN-iQq"/>
+                        <outletCollection property="answerButtons" destination="D3m-JN-PF5" collectionClass="NSMutableArray" id="pqB-Oa-bXc"/>
                         <segue destination="GPu-Sf-bPr" kind="show" identifier="backToQuestionScene" id="dRU-Ze-r9B"/>
                         <segue destination="TGo-h2-vU5" kind="show" identifier="toFinishedScene" id="48h-WH-7uX"/>
                     </connections>
@@ -314,6 +331,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="nGw-xO-ae3"/>
         <segue reference="dRU-Ze-r9B"/>
         <segue reference="qF1-bz-Au3"/>
     </inferredMetricsTieBreakers>
