@@ -51,9 +51,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.dataSource = self
         tableView.delegate = self
         self.navigationItem.hidesBackButton = true
+        UserDefaults.standard.set("https://tednewardsandbox.site44.com/questions.json", forKey: "dataSourceURL")
         self.fetchQuizData(from: "https://tednewardsandbox.site44.com/questions.json")
         print(quizTopics)
-//        print(tableView.dequeueReusableCell(withIdentifier: "QuizCell")!) // reurns nil
     }
     
     @IBAction func btnAlert(_ sender: UIBarButtonItem!) {
@@ -64,7 +64,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if let savedURL = UserDefaults.standard.string(forKey: "dataSourceURL") {
                 field.text = savedURL
             }
-            // need to check is url is epty?? Just make sure can't save empty url
         }
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
@@ -75,6 +74,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             let urlField = fields[0]
             guard let url = urlField.text, !url.isEmpty else {
+                self.showAlert(title: "Download Failed", message: "Url must not be empty")
                 return
             }
             UserDefaults.standard.set(url, forKey: "dataSourceURL")
