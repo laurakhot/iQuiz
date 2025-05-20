@@ -20,9 +20,14 @@
                                 <rect key="frame" x="0.0" y="5" width="393" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Settings" image="gear" catalog="system" width="390.33333333333331" id="UXv-7M-Llw">
+                                    <barButtonItem title="Settings" width="205.33333333333331" id="UXv-7M-Llw">
                                         <connections>
                                             <action selector="btnAlert:" destination="BYZ-38-t0r" id="kzS-sc-EEY"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Load Data" width="205.33332824707031" id="Gdn-Zt-cm5">
+                                        <connections>
+                                            <action selector="loadData:" destination="BYZ-38-t0r" id="InE-Ar-JcB"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -331,12 +336,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="nGw-xO-ae3"/>
-        <segue reference="dRU-Ze-r9B"/>
+        <segue reference="nz7-Wt-rJU"/>
         <segue reference="qF1-bz-Au3"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="gear" catalog="system" width="128" height="122"/>
         <image name="math_quiz" width="400" height="200"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
