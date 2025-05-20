@@ -95,7 +95,7 @@ class QuizQuestion: NSObject, NSCoding {
 
 // global vars
 //var link = UserDefaults.standard.string(forKey: "dataSourceURL")
-//let settingFile = URL(filePath: NSHomeDirectory() + "/Documents/Settings.bundle")
+
 let quizFile = NSHomeDirectory() +  "/Documents/archive.quiz"
 var quizTopics: [QuizTopic] = []
 let imgURLS = ["science_quiz", "deadpool_quiz", "math_quiz"]
@@ -135,6 +135,7 @@ class ViewController: UIViewController, UITableViewDataSource,
         self.navigationItem.hidesBackButton = true
         
         print("Current source URL", UserDefaults.standard.string(forKey: "dataSourceURL") ?? "nothing")
+        
         if UserDefaults.standard.string(forKey: "dataSourceURL") == nil {
             UserDefaults.standard.set(
                 "https://tednewardsandbox.site44.com/questions.json",
@@ -148,15 +149,29 @@ class ViewController: UIViewController, UITableViewDataSource,
         } else {
             self.fetchQuizData(from: UserDefaults.standard.string(forKey: "dataSourceURL")!)
             }
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(refreshSettings),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+    }
+    
+    @objc func refreshSettings() {
+        if let updatedURL = UserDefaults.standard.string(forKey: "dataSourceURL") {
+            print("Updated URL from Settings:", updatedURL)
+            // could also auto-referesh here
         }
+    }
 
     @IBAction func loadData(_ sender: UIBarButtonItem!) {
-        print("Current source URL from load method", UserDefaults.standard.string(forKey: "dataSourceURL") ?? "nothing")
-        guard let urlStr = UserDefaults.standard.string(forKey: "dataSourceURL") else {
+//        print("url from load method: ", UserDefaults.standard.string(forKey: "dataSourceURL") ?? "nothing")
+        guard let urlStr = UserDefaults.standard.string(forKey: "dataSourceURL"), !urlStr.isEmpty else {
             showAlert(title: "Error", message: "No data source URL set in settings")
+//            print("in the else in the guard")
             return
         }
-        
         fetchQuizData(from: urlStr)
     }
 
@@ -223,6 +238,7 @@ class ViewController: UIViewController, UITableViewDataSource,
                 // updates table view UI on
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.showAlert(title: "Success!", message: "Table data loaded")
                 }
             } catch {
                 DispatchQueue.main.async {

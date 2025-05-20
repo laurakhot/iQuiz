@@ -12,7 +12,7 @@
 			<key>Title</key>
 			<string>Source URL</string>
 			<key>Key</key>
-			<string>dataSourceUrl</string>
+			<string>dataSourceURL</string>
 			<key>DefaultValue</key>
 			<string>https://tednewardsandbox.site44.com/questions.json</string>
 			<key>IsSecure</key>
